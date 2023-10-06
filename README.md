@@ -1,6 +1,6 @@
 # Django Docker Quickstart
 
-This quickstart provides an easy way to initiate a Django project using Docker. It comes with pre-configured services including PostgreSQL, Redis, Celery (worker and beat), Nginx, and Traefik, ready to run a Django web application. Additionally, it provides a few handy shortcuts for easier development.
+This quickstart provides an easy way to initiate a Django project using Docker. It comes with pre-configured services including PostgreSQL, Redis, Celery (worker and beat) and Nginx, ready to run a Django web application. Additionally, it provides a few handy shortcuts for easier development.
 
 ---
 
@@ -11,7 +11,6 @@ This quickstart provides an easy way to initiate a Django project using Docker. 
 - **Redis** in-memory data structure store
 - **Celery** worker and beat services for running background tasks asynchronously
 - **Nginx** web server for serving static and media files, and proxying requests to the Django application
-- **Traefik** reverse proxy for routing requests to the appropriate service and providing SSL termination
 
 ## Included Packages and Tools 🛠️
 
@@ -34,12 +33,12 @@ This quickstart provides an easy way to initiate a Django project using Docker. 
 
 1. **Clone the repository:**
     ```bash
-    git clone https://github.com/godd0t/django-docker-quickstart.git
+    git clone https://github.com/TheCodingSheikh/django-docker.git
     ```
 
 2. **Change directory into the project:**
     ```bash
-    cd django-docker-quickstart
+    cd django-docker
     ```
 
 3. **Copy the `env.example` file to `.env` and update the values as needed:**  
@@ -53,28 +52,15 @@ This quickstart provides an easy way to initiate a Django project using Docker. 
       Copy-Item -Path env.example -Destination .env
      ```
 
+4. **Find and replace all `project_name` and rename the folder under `src` to your like**  
+
 ---
 
 ## Initial Setup ⚙️
 
 ### Development Prerequisites
 
-1. **Create a virtual environment:**
-    ```bash
-    python -m venv venv
-    ```
-
-2. **Activate the virtual environment:**
-    ```bash
-    source venv/bin/activate
-    ```
-
-3. **(Optional) Install the development requirements specific to your IDE for enhanced functionality and support.**
-    ```bash
-    pip install -r src/requirements-dev.txt
-    ```
-
-4. **Build the image and run the container:**  
+1. **Build the image and run the container:**  
    
    - If buildkit is not enabled, enable it and build the image:
      ```bash

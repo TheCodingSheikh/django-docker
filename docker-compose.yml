@@ -5,7 +5,7 @@ services:
     container_name: "${APP_NAME}-backend"
     build:
       context: .
-      dockerfile: deployment/Dockerfile
+      dockerfile: deployment/Dockerfile.dev
       args:
         - APP_NAME=${APP_NAME}
         - APP_HOST=${APP_HOST}
@@ -17,8 +17,7 @@ services:
     ports:
       - "${APP_PORT}:${APP_PORT}"
     depends_on:
-      db:
-        condition: service_healthy
+      - db
     command: [ "/bin/sh", "/app/deployment/scripts/backend/start.sh" ]
 
   db:
@@ -31,11 +30,8 @@ services:
     expose:
       - "${POSTGRES_PORT:-5432}"
     shm_size: 1g
-    healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "${POSTGRES_USER}", "-d", "${POSTGRES_DB}" ]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+    ports:
+      - "${POSTGRES_PORT}:${POSTGRES_PORT}"
 
 
   redis:
